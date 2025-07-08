@@ -1,11 +1,22 @@
+// src/App.tsx
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
+import Upload from './Upload';
 
-function App() {
+function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="App">
+      <div className="logo-container">
+        <img src="/assets/hireez_logo.jpg" alt="Hireez Logo" />
+      </div>
+      <div className="profile-container">
+        <img src="/assets/me_picture.jpg" alt="Profile" />
+      </div>
       <div className="container">
-        <div className="button">
+        <div className="button" onClick={() => navigate('/upload')}>
           <div>Upload</div>
           <small>Upload your resume to find matching jobs</small>
         </div>
@@ -19,6 +30,17 @@ function App() {
         </div>
       </div>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/upload" element={<Upload />} />
+      </Routes>
+    </Router>
   );
 }
 
